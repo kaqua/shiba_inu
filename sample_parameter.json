@@ -1,0 +1,14 @@
+[
+    {
+        "ParameterKey": "Param1",
+        "ParameterValue": "PARAM_01"
+    },
+    {
+        "ParameterKey": "Param2",
+        "ParameterValue": ""
+    },
+    {
+        "ParameterKey": "Param3",
+        "ParameterValue": ""
+    }
+]
