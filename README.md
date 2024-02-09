@@ -6,13 +6,13 @@ CloudFormationテンプレートからパラメータファイルを作成しま
 ## 作業環境
 - python  
 3.10
-- ライブラリ  
+- パッケージ  
 pyyaml  
 awscli
 
 ## 使い方
 ```
-python create_cfn_parameter_file.py template/sample.yml 
+$ python create_cfn_parameter_file.py template/sample.yml 
 パラメータファイル: sample_parameter.json
 ```
-作成されるパラメータファイル名は、{パラメータ}_parameter.json になります。
+作成されるパラメータファイル名は、{テンプレートファイル名}_parameter.json になります。
