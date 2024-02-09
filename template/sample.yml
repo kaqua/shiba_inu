@@ -1,31 +1,32 @@
 Parameters:
-    Param1:
-        Description: "" 
-        Type: String
-        Default: "PARAM_01"
-    Param2:
-        Description: "" 
-        Type: String
-    Param3:
-        Description: ""
-        Type: String
-        Default: ""
+  Param1:
+    Description: "" 
+    Type: String
+    Default: "PARAM_01"
+  Param2:
+      Description: "" 
+      Type: String
+  Param3:
+      Description: ""
+      Type: String
+      Default: ""
 
 Resources:
-    ExampleVpc:
-        Type: AWS::EC2::VPC
-        Properties:
-            CidrBlock: "10.0.0.0/16"
-    IPv6CidrBlock:
-        Type: AWS::EC2::VPCCidrBlock
-        Properties:
-            AmazonProvidedIpv6CidrBlock: true
-            VpcId: !Ref ExampleVpc
-    ExampleSubnet:
-        Type: AWS::EC2::Subnet
-        DependsOn: IPv6CidrBlock
-        Properties:
-            AssignIpv6AddressOnCreation: true
-            CidrBlock: !Select [ 0, !Cidr [ !GetAtt ExampleVpc.CidrBlock, 1, 8 ]]
-            Ipv6CidrBlock: !Select [ 0, !Cidr [ !Select [ 0, !GetAtt ExampleVpc.Ipv6CidrBlocks], 1, 64 ]]
-            VpcId: !Ref ExampleVpc
+  ExampleVpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: "10.0.0.0/16"
+  IPv6CidrBlock:
+    Type: AWS::EC2::VPCCidrBlock
+    Properties:
+      AmazonProvidedIpv6CidrBlock: true
+      VpcId: !Ref Param1
+  ExampleSubnet:
+    Type: AWS::EC2::Subnet
+    DependsOn: IPv6CidrBlock
+    Properties:
+      AssignIpv6AddressOnCreation: true
+      CidrBlock: !Select [ 0, !Cidr [ !GetAtt ExampleVpc.CidrBlock, 1, 8 ]]
+      Ipv6CidrBlock: !Select [ 0, !Cidr [ !Select [ 0, !GetAtt ExampleVpc.Ipv6CidrBlocks], 1, 64 ]]
+      VpcId:
+        Ref: Param1
